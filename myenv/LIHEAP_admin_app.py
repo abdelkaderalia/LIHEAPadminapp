@@ -3,25 +3,24 @@ import streamlit as st
 import requests
 import pandas as pd
 import numpy as np
-import altair as alt
-import seaborn as sns
 import matplotlib.pyplot as plt
 import geopandas as gpd
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import mapclassify
 import plotly.express as px
 import webbrowser
+import openpyxl
 
 
 @st.cache
 #define function to get geo data
 def get_geo():
-    geo = gpd.read_file('/Users/alia/Documents/Github/LIHEAPadminapp/Data/tl_2021_us_state.shp')
+    geo = gpd.read_file('https://github.com/abdelkaderalia/LIHEAPadminapp/raw/main/Data/tl_2021_us_state.shp')
     #save shapefile to dataframe
     geo = geo.to_crs("EPSG:4326")
     geo = geo.rename(columns = {'STUSPS':'State'})
 
-    df = pd.read_excel('/Users/alia/Documents/Github/LIHEAPadminapp/Data/admin_data.xlsx')
+    df = pd.read_excel('https://github.com/abdelkaderalia/LIHEAPadminapp/raw/main/Data/admin_data.xlsx')
 
     df = df.merge(geo,on='NAME',how='left')
 
