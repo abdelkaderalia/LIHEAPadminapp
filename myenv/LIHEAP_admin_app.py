@@ -65,4 +65,6 @@ if __name__ == "__main__":
                                labels={var_name:var},
                                width=1300, height=700)
 
+    fig.update_layout(autosize=True)
+
     st.plotly_chart(fig)
