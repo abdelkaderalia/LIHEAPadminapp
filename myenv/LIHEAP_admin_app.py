@@ -50,13 +50,12 @@ if __name__ == "__main__":
 
     st.write(part2)
 
-    metrics = {'Application time (min)':'App_time','Number of pages':'Num_pages','Number of questions':'Num_q','Number of required documents':'Req_doc','Appointment required':'Appt_req','Apply online':'App_online'}
+    metrics = {'Number of pages':'Num_pages','Application time (min)':'App_time','Number of questions':'Num_q','Number of required documents':'Num_docs','Appointment required':'Appt_req','Apply online':'App_online'}
     metrics_reversed = dict()
     for item in metrics.items():
         key = item[1]
         val = item[0]
         metrics_reversed[key] = val
-
 
     var = st.selectbox("Choose a burden metric:", metrics.keys())
     var_name = metrics[var]
