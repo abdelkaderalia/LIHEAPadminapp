@@ -69,7 +69,7 @@ if __name__ == "__main__":
                            color_continuous_scale="darkmint",
                            range_color=(df[var_name].min(), df[var_name].max()),
                            hover_name='NAME',
-                           hover_data=list(metrics.values()),
+                           #hover_data=list(metrics.values()),
                            locationmode='USA-states',
                            scope="usa",
                            labels=metrics_reversed,
