@@ -20,7 +20,7 @@ def get_geo():
     geo = geo.to_crs("EPSG:4326")
     geo = geo.rename(columns = {'STUSPS':'State'})
 
-    df = pd.read_excel('https://github.com/abdelkaderalia/LIHEAPadminapp/raw/main/Data/admin_data.xlsx')
+    df = pd.read_excel('https://github.com/abdelkaderalia/LIHEAPadminapp/blob/main/Data/admin_data.xlsx?raw=true')
 
     df = df.merge(geo,on='NAME',how='left')
 
