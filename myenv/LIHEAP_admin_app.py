@@ -78,7 +78,7 @@ if __name__ == "__main__":
         fig = px.choropleth(df,locations='State', color=var_name,
                            color_discrete_map={'Yes':'#3e818c','No':'#abe0c5'},
                            hover_name='NAME',
-                           hover_data=list(metrics.values()),
+                           #hover_data=list(metrics.values()),
                            locationmode='USA-states',
                            scope="usa",
                            labels=metrics_reversed,
