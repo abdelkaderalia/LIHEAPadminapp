@@ -50,21 +50,33 @@ if __name__ == "__main__":
 
     st.write(part2)
 
-    metrics = {'Application time (min)':'App_time','Number of pages':'Num_pages','Number of questions':'Num_q'}
+    metrics = {'Application time (min)':'App_time','Number of pages':'Num_pages','Number of questions':'Num_q','Appointment required':'Appt_req'}
     var = st.selectbox("Choose a burden metric:", metrics.keys())
     var_name = metrics[var]
 
+    discrete_vars = ['Appt_req']
+
     df = get_geo()
 
-    fig = px.choropleth(df,locations='State', color=var_name,
-                               color_continuous_scale="darkmint",
-                               range_color=(df[var_name].min(), df[var_name].max()),
-                               hover_name='NAME',
-                               locationmode='USA-states',
-                               scope="usa",
-                               labels={var_name:var},
-                               width=1300, height=700)
+    if var_name not in discrete_vars:
+        fig = px.choropleth(df,locations='State', color=var_name,
+                           color_continuous_scale="darkmint",
+                           range_color=(df[var_name].min(), df[var_name].max()),
+                           hover_name='NAME',
+                           locationmode='USA-states',
+                           scope="usa",
+                           labels={var_name:var},
+                           height=900)
+    else:
+        fig = px.choropleth(df,locations='State', color=var_name,
+                           color_discrete_map={'Yes':'seagreen','No':'darkturquoise'},
+                           hover_name='NAME',
+                           locationmode='USA-states',
+                           scope="usa",
+                           labels={var_name:var},
+                           height=900)
 
-    fig.update_layout(autosize=True)
+    fig.update_layout(title_text='LIHEAP Application Burdens by State', title_x=0.5,font=dict(size=16))
+    #fig.update_traces(text = df.apply(lambda row: f"{row['NAME']}<br>{var}-{row[var_name]}", axis=1),hoverinfo="text", selector=dict(type='choropleth'))
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig,use_container_width=True)
