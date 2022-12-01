@@ -50,11 +50,18 @@ if __name__ == "__main__":
 
     st.write(part2)
 
-    metrics = {'Application time (min)':'App_time','Number of pages':'Num_pages','Number of questions':'Num_q','Appointment required':'Appt_req'}
+    metrics = {'Application time (min)':'App_time','Number of pages':'Num_pages','Number of questions':'Num_q','Number of required documents':'Req_doc','Appointment required':'Appt_req','Apply online':'App_online'}
+    metrics_reversed = dict()
+    for item in metrics.items():
+        key = item[1]
+        val = item[0]
+        metrics_reversed[key] = val
+
+
     var = st.selectbox("Choose a burden metric:", metrics.keys())
     var_name = metrics[var]
 
-    discrete_vars = ['Appt_req']
+    discrete_vars = ['Appt_req','App_online']
 
     df = get_geo()
 
@@ -63,17 +70,19 @@ if __name__ == "__main__":
                            color_continuous_scale="darkmint",
                            range_color=(df[var_name].min(), df[var_name].max()),
                            hover_name='NAME',
+                           hover_data=list(metrics.values()),
                            locationmode='USA-states',
                            scope="usa",
-                           labels={var_name:var},
+                           labels=metrics_reversed,
                            height=900)
     else:
         fig = px.choropleth(df,locations='State', color=var_name,
-                           color_discrete_map={'Yes':'seagreen','No':'darkturquoise'},
+                           color_discrete_map={'Yes':'#3e818c','No':'#abe0c5'},
                            hover_name='NAME',
+                           hover_data=list(metrics.values()),
                            locationmode='USA-states',
                            scope="usa",
-                           labels={var_name:var},
+                           labels=metrics_reversed,
                            height=900)
 
     fig.update_layout(title_text='LIHEAP Application Burdens by State', title_x=0.5,font=dict(size=16))
