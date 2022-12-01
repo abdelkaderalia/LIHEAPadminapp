@@ -15,7 +15,7 @@ import openpyxl
 @st.cache
 #define function to get geo data
 def get_geo():
-    geo = gpd.read_file('https://github.com/abdelkaderalia/LIHEAPadminapp/raw/main/Data/tl_2021_us_state.shp')
+    geo = gpd.read_file('/vsicurl/https://github.com/abdelkaderalia/LIHEAPadminapp/raw/main/Data/tl_2021_us_state.shp')
     #save shapefile to dataframe
     geo = geo.to_crs("EPSG:4326")
     geo = geo.rename(columns = {'STUSPS':'State'})
