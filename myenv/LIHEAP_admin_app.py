@@ -34,7 +34,7 @@ def get_geo():
 if __name__ == "__main__":
     #st.markdown('<h2 align="left">How much money does the federal government spend?</h2>', unsafe_allow_html=True) # Add app title
     st.set_page_config(page_icon="📑",page_title="Administrative Burdens - LIHEAP",layout="wide")
-    st.title('Administrative Burdens by State')
+    st.title('Administrative Burdens in State Applications')
     st.header('Low Income Home Energy Assistance Program (LIHEAP)')
     st.subheader('')
 
