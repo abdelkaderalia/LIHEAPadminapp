@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     st.write(part2)
 
-    metrics = {'Number of pages':'Num_pages','Application time (min)':'App_time','Number of questions':'Num_q','Number of required documents':'Num_docs','Appointment required':'Appt_req','Apply online':'App_online'}
+    metrics = {'Number of pages':'Num_pages','Application time (min)':'App_time','Number of questions':'Num_q','Number of required documents':'Num_docs','Appointment required':'Appt_req','Apply online':'App_online','Data sharing with SSA':'Data_share'}
     metrics_reversed = dict()
     for item in metrics.items():
         key = item[1]
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     var = st.selectbox("Choose a burden metric:", metrics.keys())
     var_name = metrics[var]
 
-    discrete_vars = ['Appt_req','App_online']
+    discrete_vars = ['Appt_req','App_online','Data_share']
 
     df = get_geo()
 
